@@ -1,6 +1,5 @@
 package cohort_8_Olatoye;
 
-import java.util.Arrays;
 
 public class Main {
 
@@ -10,26 +9,21 @@ public class Main {
 
 
         String charOne, charTwo;
-        arrayOfWord = str.split("[-,/ [*]%]");
+        arrayOfWord = str.split("[\\W*&#@%_]");
 //        return Arrays.toString(arrayOfWord);
-        newArray.append(arrayOfWord[0]);
+        newArray.append(arrayOfWord[0].toLowerCase());
         for (int index = 0; index <= arrayOfWord.length-1; index++) {
-            if (index != 0) {
-                charOne=arrayOfWord[index].substring(0,1);
+            if (arrayOfWord.length <= 1) break;
+            else if (index != 0) {
+                charOne= String.valueOf(Character.toUpperCase(arrayOfWord[index].charAt(0)));
                 charTwo = charOne.toUpperCase() + arrayOfWord[index].substring(1).toLowerCase();
                 newArray.append(charTwo);
-
             }
         }
-//        StringBuilder answer = new StringBuilder();
-
-//        for (String word : newArray) {
-//            answer.append(word);
-//        }
         return newArray;
     }
 
     public static void main(String[] args) {
-        System.out.println(stringChallenge("cats AND*Dogs-are Awesome"));
+        System.out.println(stringChallenge("cats-AND%dogs_are-awesome"));
     }
 }
